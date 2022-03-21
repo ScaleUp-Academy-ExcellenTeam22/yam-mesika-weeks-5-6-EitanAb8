@@ -4,15 +4,10 @@ def join(*lists, sep="-"):
     # returns a new combined list with the sep sign between
     # each list added.
 
-    lst = []
-    if len(lists) != 0:
-        lst += lists[0]
-        for l in lists[1:]:
-            lst.append(sep)
-            lst += l
-    if not lst:
+    if not len(lists):
         return None
-    return lst
+    final_list = [inner for outer in lists[:len(lists)-1] for inner in outer+[sep]] + lists[len(lists)-1]
+    return final_list
 
 
 def main():
