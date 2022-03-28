@@ -1,28 +1,37 @@
 import datetime
 import random
 
+# Note: I studied the solution from the following link site:
+# https://www.adamsmith.haus/python/answers/how-to-generate-a-random-date-between-two-dates-in-python
 
-def i_dont_have_vinegar(start_time, end_time):
-    # This program receives 2 date objects.
-    # prints "i don't have vinegar if a random date between
-    # the 2 of them is monday.
 
-    start_date = start_time
-    end_date = end_time
-
-    time_between_dates = end_date - start_date
-    days_between_dates = time_between_dates.days
-    random_number_of_days = random.randrange(days_between_dates)
-    random_date = start_date + datetime.timedelta(days=random_number_of_days)
+def day_for_vinegar(start_date, end_date):
+    """
+    The function prints "I don't have vinegar" if a random generated date is monday.
+    :param start_date: datetime object of the start date.
+    :param end_date: datetime object of the end date.
+    :return: None
+    """
+    random_date = generate_random_date(start_date, end_date)
 
     if random_date.weekday() == 0:
-        print("I don't have vinegar")
+        print("I don't have vinegar.")
+
+
+def generate_random_date(start_date, end_date) -> datetime:
+    """
+    The function generates a random date between two given dates.
+    :param start_date: datetime object of the start date.
+    :param end_date: datetime object of the end date.
+    :return: datetime object of a random date.
+    """
+    return start_date + datetime.timedelta(days=random.randrange((end_date - start_date).days))
 
 
 def main():
     start_time = datetime.date(2020, 1, 1)
     end_date = datetime.date(2020, 2, 1)
-    i_dont_have_vinegar(start_time, end_date)
+    day_for_vinegar(start_time, end_date)
 
 
 if __name__ == '__main__':
