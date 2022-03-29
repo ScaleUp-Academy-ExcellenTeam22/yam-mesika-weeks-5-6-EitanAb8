@@ -4,6 +4,9 @@ import random
 # Note: I studied the solution from the following link site:
 # https://www.adamsmith.haus/python/answers/how-to-generate-a-random-date-between-two-dates-in-python
 
+# Const for monday in weekday() function
+MONDAY = 0
+
 
 def day_for_vinegar(start_date, end_date):
     """
@@ -14,7 +17,7 @@ def day_for_vinegar(start_date, end_date):
     """
     random_date = generate_random_date(start_date, end_date)
 
-    if random_date.weekday() == 0:
+    if random_date.weekday() == MONDAY:
         print("I don't have vinegar.")
 
 
@@ -25,7 +28,7 @@ def generate_random_date(start_date, end_date) -> datetime:
     :param end_date: datetime object of the end date.
     :return: datetime object of a random date.
     """
-    return start_date + datetime.timedelta(days=random.randrange((end_date - start_date).days))
+    return start_date+datetime.timedelta(days=random.randrange((end_date-start_date).days))
 
 
 def main():
